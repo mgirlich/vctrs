@@ -35,6 +35,10 @@ test_that("`vec_rep()` validates `times`", {
   expect_error(vec_rep(1, NA_integer_))
 })
 
+test_that("`x` must be a vector", {
+  expect_error(vec_rep(NULL, 2), class = "vctrs_error_scalar_type")
+})
+
 # ------------------------------------------------------------------------------
 # vec_rep_each()
 
@@ -78,6 +82,10 @@ test_that("`vec_rep_each()` validates `times`", {
 
 test_that("`vec_rep_each()` uses recyclying errors", {
   expect_error(vec_rep_each(1:2, 1:3), class = "vctrs_error_recycle_incompatible_size")
+})
+
+test_that("`x` must be a vector", {
+  expect_error(vec_rep_each(NULL, 2), class = "vctrs_error_scalar_type")
 })
 
 # ------------------------------------------------------------------------------
@@ -147,4 +155,8 @@ test_that("works with data frames with rows but no columns", {
   x <- data_frame(.size = 5)
   expect <- data_frame(key = data_frame(.size = 1L), times = 5L)
   expect_identical(vec_unrep(x), expect)
+})
+
+test_that("`x` must be a vector", {
+  expect_error(vec_unrep(NULL), class = "vctrs_error_scalar_type")
 })

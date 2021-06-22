@@ -22,6 +22,8 @@ static SEXP vec_rep(SEXP x, int times);
 
 // [[ register() ]]
 SEXP vctrs_rep(SEXP x, SEXP times) {
+  vec_assert(x, args_empty);
+
   times = PROTECT(vec_cast(times, vctrs_shared_empty_int, args_times, args_empty));
 
   if (vec_size(times) != 1) {
@@ -79,6 +81,8 @@ static SEXP vec_rep_each(SEXP x, SEXP times);
 
 // [[ register() ]]
 SEXP vctrs_rep_each(SEXP x, SEXP times) {
+  vec_assert(x, args_empty);
+
   return vec_rep_each(x, times);
 }
 
@@ -297,6 +301,8 @@ static SEXP vec_unrep(SEXP x);
 
 // [[register()]]
 SEXP vctrs_unrep(SEXP x) {
+  vec_assert(x, args_empty);
+
   return vec_unrep(x);
 }
 
