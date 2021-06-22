@@ -54,6 +54,9 @@ test_that("`vec_rep_each()` repeats data frames row wise", {
 
 test_that("`vec_rep_each()` can repeat 0 `times`", {
   expect_identical(vec_rep_each(1:2, 0), integer())
+
+  # a named vector produces an empty named vector
+  expect_identical(vec_rep_each(c(x = 1L), 0), setNames(integer(0), character(0)))
 })
 
 test_that("`vec_rep_each()` can repeat 1 `time`", {
